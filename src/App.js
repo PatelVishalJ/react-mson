@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { msonFormJson } from "./json/msonFormJson";
+import compiler from "mson/lib/compiler";
+import { Component } from 'mson-react';
+import { JsonEditor as Editor } from 'jsoneditor-react';
+import 'jsoneditor-react/es/editor.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+export default function MyReactComponent() {
+  
+  const [formJson, setFormJson] = useState(msonFormJson);
+  const [msonForm, setMsonForm] = useState(null);
+
+  function handleChange(e) {
+    setFormJson(e);
+  }
+
+  useEffect(() => {
+    compiler.registerComponent("MyFrom", formJson);
+
+    const MsonForm = compiler.compile({
+      component: "MyFrom"
+    });
+
+    setMsonForm(new MsonForm());
+  }, [formJson]);
+
+  return(
+    <div>
+      <p>This is React Application contains MSON component in it.</p>
+      <p>It is NOT an MSON application.</p>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <Component component={msonForm} />
+            </td>
+            <td>
+              <Editor
+                value={formJson}
+                onChange={handleChange}
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  );
+  )
 }
-
-export default App;

@@ -1,3 +1,5 @@
+This is a sample playgroud project to build dynamic input form using [MSON](https://github.com/redgeoff/mson).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
