@@ -11,7 +11,7 @@ export const msonFormJson = {
     {
       name: "due",
       component: "DateField",
-      label: "Due"
+      label: "Due Date"
     }
   ]
 };
