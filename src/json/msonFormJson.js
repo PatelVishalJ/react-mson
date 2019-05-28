@@ -12,6 +12,12 @@ export const msonFormJson = {
       name: "due",
       component: "DateField",
       label: "Due Date"
+    },
+    {
+      name: "customComponentName",
+      component: "CustomComponent",
+      label: "Real Label",
+      value: "Real Value"
     }
   ]
 };
